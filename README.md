@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfólio Pessoal
 
-## Getting Started
+Este é um site de portfólio pessoal moderno e responsivo construído com Next.js, TypeScript e Tailwind CSS.
 
-First, run the development server:
+## Tecnologias Utilizadas
+
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- React TSParticles
+- EmailJS
+
+## Funcionalidades
+
+- Design moderno e responsivo
+- Animações suaves usando Framer Motion
+- Efeito de partículas interativo
+- Formulário de contato funcional
+- Navegação suave entre seções
+- Otimizado para SEO
+- Totalmente acessível
+
+## Pré-requisitos
+
+- Node.js 18.17 ou superior
+- npm ou yarn
+
+## Instalação
+
+1. Clone o repositório:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/seu-usuario/portfolio.git
+cd portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+# ou
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Configure as variáveis de ambiente:
+   Crie um arquivo `.env.local` na raiz do projeto e adicione suas credenciais do EmailJS:
 
-## Learn More
+```
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=seu_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=seu_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=sua_public_key
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Inicie o servidor de desenvolvimento:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+# ou
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-## Deploy on Vercel
+## Personalização
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Imagens: Substitua as imagens na pasta `public` com suas próprias imagens
+- Conteúdo: Edite os textos e informações nos componentes em `src/components`
+- Estilos: Personalize as cores e estilos em `tailwind.config.ts` e `src/app/globals.css`
+- EmailJS: Configure seu template e serviço no [EmailJS Dashboard](https://dashboard.emailjs.com)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estrutura do Projeto
+
+```
+src/
+  ├── app/
+  │   ├── layout.tsx
+  │   ├── page.tsx
+  │   └── globals.css
+  ├── components/
+  │   ├── Header.tsx
+  │   ├── Hero.tsx
+  │   ├── About.tsx
+  │   ├── Projects.tsx
+  │   ├── Contact.tsx
+  │   └── Footer.tsx
+  └── config/
+      └── emailjs.ts
+```
+
+## Deploy
+
+O projeto está pronto para ser implantado na Vercel. Basta conectar seu repositório e configurar as variáveis de ambiente.
+
+## Licença
+
+MIT
