@@ -62,13 +62,6 @@ npm run dev
 
 5. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-## Personalização
-
-- Imagens: Substitua as imagens na pasta `public` com suas próprias imagens
-- Conteúdo: Edite os textos e informações nos componentes em `src/components`
-- Estilos: Personalize as cores e estilos em `tailwind.config.ts` e `src/app/globals.css`
-- EmailJS: Configure seu template e serviço no [EmailJS Dashboard](https://dashboard.emailjs.com)
-
 ## Estrutura do Projeto
 
 ```
@@ -87,10 +80,6 @@ src/
   └── config/
       └── emailjs.ts
 ```
-
-## Deploy
-
-O projeto está pronto para ser implantado na Vercel. Basta conectar seu repositório e configurar as variáveis de ambiente.
 
 ## Licença
 
