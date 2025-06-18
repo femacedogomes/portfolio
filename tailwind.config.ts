@@ -36,6 +36,14 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    "opacity-0",
+    "opacity-100",
+    "text-indigo-400",
+    "text-gray-900",
+    "text-gray-100",
+    // adicione todas as classes que aparecem dinamicamente
+  ],
 };
 
 export default config;
