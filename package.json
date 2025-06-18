@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf .next dist",
+    "clean": "rm -rf .next out",
     "predeploy": "npm run clean",
-    "deploy": "next build && touch dist/.nojekyll && cp -r public/* dist/ && gh-pages --dist dist"
+    "deploy": "next build && touch out/.nojekyll && gh-pages --dist out"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -19,7 +19,6 @@
     "@tsparticles/slim": "3.8.1",
     "framer-motion": "^12.16.0",
     "next": "15.3.3",
-    "particles.js": "^2.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tsparticles": "^3.8.1",
