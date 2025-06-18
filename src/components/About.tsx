@@ -58,7 +58,7 @@ const About = () => {
                   </div>
                   <p className="text-gray-600 ml-8">
                     Desenvolvimento web e mobile desde 2022, com foco em React,
-                    Next.js e React Native.
+                    Next.js, React Native e Node.js.
                   </p>
                 </div>
 

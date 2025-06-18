@@ -4,25 +4,61 @@ import { motion } from "framer-motion";
 
 const projects = [
   {
-    title: "E-commerce Moderno",
-    description:
-      "Plataforma de e-commerce completa com carrinho de compras, pagamentos e painel administrativo.",
-    image: "/project1.jpg",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
+    title: "Agility Creative Solution",
+    description: "Um site visando estética, responsividade, SEO e performance.",
+    image: "/images/project1.png",
+    technologies: ["React", "Next", "Tailwind", "TypeScript", "Sanity"],
   },
   {
-    title: "App de Delivery",
+    title: "Academia Cearense de Economia",
     description:
-      "Aplicativo mobile para entrega de comida com rastreamento em tempo real.",
-    image: "/project2.jpg",
-    technologies: ["React Native", "Node.js", "MongoDB", "Socket.io"],
+      "Um site com um design moderno e responsivo, com blog, galeria de fotos, contato e etc.",
+    image: "/images/project2.png",
+    technologies: ["Wordpress", "PHP", "Elementor"],
   },
   {
-    title: "Dashboard Analytics",
+    title: "Monteiro & Rolim advocacia",
+    description: "Um site com um design moderno, atualizado e responsivo.",
+    image: "/images/project3.png",
+    technologies: ["Wordpress", "PHP", "Elementor"],
+  },
+  {
+    title: "EasyToLive",
     description:
-      "Dashboard interativo para visualização de dados e métricas de negócio.",
-    image: "/project3.jpg",
-    technologies: ["React", "D3.js", "Material UI", "Firebase"],
+      "Um webApp para gerar cupons de desconto para clientes, com um design moderno e responsivo, com um sistema de login e registro de usuários, e um sistema de administração para gerenciar os cupons de desconto.",
+    image: "/images/project4.png",
+    technologies: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    title: "Treina AI",
+    description:
+      "Um app ios para gerar e acompanhar sua rotina de treino de musculação utilizando IA, com um layout intuitivo, moderno e responsivo.",
+    image: "/images/project5.png",
+    technologies: [
+      "React Native",
+      "Node.js",
+      "MongoDB",
+      "TypeScript",
+    ],
+  },
+  {
+    title: "Shopping Então Pronto",
+    description:
+      "Um site para associados da Então Pronto cadastrarem suas lojas e seus serviços e produtos.",
+    image: "/images/project6.png",
+    technologies: [
+      "Next.js",
+      "Tailwind",
+      "Sanity",
+      "TypeScript",
+    ],
   },
 ];
 
@@ -38,7 +74,7 @@ const Projects = () => {
           className="max-w-4xl mx-auto"
         >
           <h2 className="text-3xl font-bold text-center text-gray-100 mb-12">
-            Projetos
+            Projetos entregues
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Felipe Macedo Gomes | Desenvolvedor",
   description:
-    "Desenvolvedor Front-End com experiência em React, Next.js e React Native.",
+    "Desenvolvedor Front-End com experiência em React, Next.js, React Native e Node.js",
   keywords:
     "desenvolvedor, front-end, react, next.js, react native, typescript",
 };
