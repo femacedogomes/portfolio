@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 import {
   FaRocket,
   FaBolt,
@@ -22,7 +23,7 @@ import {
 } from "react-icons/si";
 
 // Mapeamento de tecnologias para ícones e cores
-const techConfig = {
+const techConfig: Record<string, { icon: ReactNode; color: string }> = {
   React: { icon: <SiReact />, color: "from-cyan-400 to-blue-500" },
   Next: { icon: <SiNextdotjs />, color: "from-gray-800 to-gray-900" },
   "Next.js": { icon: <SiNextdotjs />, color: "from-gray-800 to-gray-900" },
@@ -39,7 +40,7 @@ const techConfig = {
   "Node.js": { icon: <SiNodedotjs />, color: "from-green-500 to-green-600" },
   MongoDB: { icon: <SiMongodb />, color: "from-green-600 to-emerald-600" },
   "React Native": { icon: <SiReact />, color: "from-purple-500 to-pink-500" },
-} as const;
+};
 
 const projects = [
   {
@@ -217,7 +218,9 @@ const Projects = () => {
                     className="flex flex-wrap gap-2"
                   >
                     {project.technologies.map((tech, techIndex) => {
-                      const config = techConfig[tech] || {
+                      const config = techConfig[
+                        tech as keyof typeof techConfig
+                      ] || {
                         icon: <FaWrench />,
                         color: "from-gray-500 to-gray-600",
                       };
