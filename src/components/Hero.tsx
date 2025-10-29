@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import particlesConfig from "@/config/particlesConfig";
+import Image from "next/image";
 
 const Hero = () => {
   const [init, setInit] = useState(false);
@@ -40,9 +41,11 @@ const Hero = () => {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <img
+            <Image
               src="/images/profile.jpeg"
               alt="Felipe Macedo Gomes"
+              width={128}
+              height={128}
               className="w-32 h-32 rounded-full object-cover shadow-lg"
             />
           </motion.div>
