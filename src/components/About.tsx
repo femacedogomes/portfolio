@@ -6,23 +6,54 @@ import {
   BriefcaseIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiGit,
+} from "react-icons/si";
 
 const About = () => {
   const skills = [
     {
       name: "JavaScript (ES6+)",
-      icon: "🟨",
+      icon: <SiJavascript />,
       color: "from-yellow-400 to-orange-500",
     },
-    { name: "TypeScript", icon: "🔷", color: "from-blue-500 to-blue-600" },
-    { name: "React", icon: "⚛️", color: "from-cyan-400 to-blue-500" },
-    { name: "Next.js", icon: "▲", color: "from-gray-800 to-gray-900" },
-    { name: "Node.js", icon: "🟢", color: "from-green-500 to-green-600" },
-    { name: "React Native", icon: "📱", color: "from-purple-500 to-pink-500" },
-    { name: "HTML5", icon: "🌐", color: "from-orange-500 to-red-500" },
-    { name: "CSS3", icon: "🎨", color: "from-blue-400 to-purple-500" },
-    { name: "Tailwind CSS", icon: "💨", color: "from-teal-400 to-cyan-500" },
-    { name: "Git", icon: "🔧", color: "from-gray-600 to-gray-700" },
+    {
+      name: "TypeScript",
+      icon: <SiTypescript />,
+      color: "from-blue-500 to-blue-600",
+    },
+    { name: "React", icon: <SiReact />, color: "from-cyan-400 to-blue-500" },
+    {
+      name: "Next.js",
+      icon: <SiNextdotjs />,
+      color: "from-gray-800 to-gray-900",
+    },
+    {
+      name: "Node.js",
+      icon: <SiNodedotjs />,
+      color: "from-green-500 to-green-600",
+    },
+    {
+      name: "React Native",
+      icon: <SiReact />,
+      color: "from-purple-500 to-pink-500",
+    },
+    { name: "HTML5", icon: <SiHtml5 />, color: "from-orange-500 to-red-500" },
+    { name: "CSS3", icon: <SiCss3 />, color: "from-blue-400 to-purple-500" },
+    {
+      name: "Tailwind CSS",
+      icon: <SiTailwindcss />,
+      color: "from-teal-400 to-cyan-500",
+    },
+    { name: "Git", icon: <SiGit />, color: "from-gray-600 to-gray-700" },
   ];
 
   return (

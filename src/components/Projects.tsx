@@ -1,23 +1,45 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  FaRocket,
+  FaBolt,
+  FaWandMagicSparkles,
+  FaMoon,
+  FaWrench,
+} from "react-icons/fa6";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+  SiSanity,
+  SiWordpress,
+  SiPhp,
+  SiElementor,
+  SiNodedotjs,
+  SiMongodb,
+} from "react-icons/si";
 
 // Mapeamento de tecnologias para ícones e cores
 const techConfig = {
-  React: { icon: "⚛️", color: "from-cyan-400 to-blue-500" },
-  Next: { icon: "▲", color: "from-gray-800 to-gray-900" },
-  "Next.js": { icon: "▲", color: "from-gray-800 to-gray-900" },
-  Tailwind: { icon: "💨", color: "from-teal-400 to-cyan-500" },
-  "Tailwind CSS": { icon: "💨", color: "from-teal-400 to-cyan-500" },
-  TypeScript: { icon: "🔷", color: "from-blue-500 to-blue-600" },
-  Sanity: { icon: "📝", color: "from-pink-500 to-rose-500" },
-  Wordpress: { icon: "🌐", color: "from-blue-600 to-blue-700" },
-  PHP: { icon: "🐘", color: "from-purple-600 to-indigo-600" },
-  Elementor: { icon: "🎨", color: "from-orange-500 to-red-500" },
-  "Node.js": { icon: "🟢", color: "from-green-500 to-green-600" },
-  MongoDB: { icon: "🍃", color: "from-green-600 to-emerald-600" },
-  "React Native": { icon: "📱", color: "from-purple-500 to-pink-500" },
-};
+  React: { icon: <SiReact />, color: "from-cyan-400 to-blue-500" },
+  Next: { icon: <SiNextdotjs />, color: "from-gray-800 to-gray-900" },
+  "Next.js": { icon: <SiNextdotjs />, color: "from-gray-800 to-gray-900" },
+  Tailwind: { icon: <SiTailwindcss />, color: "from-teal-400 to-cyan-500" },
+  "Tailwind CSS": {
+    icon: <SiTailwindcss />,
+    color: "from-teal-400 to-cyan-500",
+  },
+  TypeScript: { icon: <SiTypescript />, color: "from-blue-500 to-blue-600" },
+  Sanity: { icon: <SiSanity />, color: "from-pink-500 to-rose-500" },
+  Wordpress: { icon: <SiWordpress />, color: "from-blue-600 to-blue-700" },
+  PHP: { icon: <SiPhp />, color: "from-purple-600 to-indigo-600" },
+  Elementor: { icon: <SiElementor />, color: "from-orange-500 to-red-500" },
+  "Node.js": { icon: <SiNodedotjs />, color: "from-green-500 to-green-600" },
+  MongoDB: { icon: <SiMongodb />, color: "from-green-600 to-emerald-600" },
+  "React Native": { icon: <SiReact />, color: "from-purple-500 to-pink-500" },
+} as const;
 
 const projects = [
   {
@@ -111,7 +133,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-center bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent mb-16"
+            className="text-4xl md:text-5xl pb-4 font-bold text-center bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent mb-12"
           >
             Projetos Entregues 🚀
           </motion.h2>
@@ -196,7 +218,7 @@ const Projects = () => {
                   >
                     {project.technologies.map((tech, techIndex) => {
                       const config = techConfig[tech] || {
-                        icon: "🔧",
+                        icon: <FaWrench />,
                         color: "from-gray-500 to-gray-600",
                       };
                       return (
@@ -260,10 +282,14 @@ const Projects = () => {
             className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
           >
             {[
-              { number: "6+", label: "Projetos Entregues", icon: "🚀" },
-              { number: "10+", label: "Tecnologias", icon: "⚡" },
-              { number: "100%", label: "Satisfação", icon: "✨" },
-              { number: "24/7", label: "Disponibilidade", icon: "🌙" },
+              { number: "6+", label: "Projetos Entregues", icon: <FaRocket /> },
+              { number: "10+", label: "Tecnologias", icon: <FaBolt /> },
+              {
+                number: "100%",
+                label: "Satisfação",
+                icon: <FaWandMagicSparkles />,
+              },
+              { number: "24/7", label: "Disponibilidade", icon: <FaMoon /> },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}

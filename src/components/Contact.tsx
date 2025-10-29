@@ -4,6 +4,13 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { emailjsConfig } from "@/config/emailjs";
+import {
+  FaComments,
+  FaEnvelope,
+  FaRocket,
+  FaCircleCheck,
+  FaCircleXmark,
+} from "react-icons/fa6";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -104,7 +111,10 @@ const Contact = () => {
                 viewport={{ once: true }}
                 className="text-2xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
               >
-                Vamos conversar! 💬
+                <span className="inline-flex items-center gap-2">
+                  <FaComments />
+                  Vamos conversar!
+                </span>
               </motion.h3>
 
               <motion.p
@@ -209,7 +219,10 @@ const Contact = () => {
                 viewport={{ once: true }}
                 className="text-2xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
               >
-                Envie uma mensagem 📧
+                <span className="inline-flex items-center gap-2">
+                  <FaEnvelope />
+                  Envie uma mensagem
+                </span>
               </motion.h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -323,7 +336,7 @@ const Contact = () => {
                           animate={{ x: [0, 5, 0] }}
                           transition={{ duration: 1.5, repeat: Infinity }}
                         >
-                          🚀
+                          <FaRocket />
                         </motion.span>
                       </>
                     )}
@@ -348,7 +361,7 @@ const Contact = () => {
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ duration: 0.5 }}
                           >
-                            ✅
+                            <FaCircleCheck />
                           </motion.span>
                           {status.message}
                         </>
@@ -358,7 +371,7 @@ const Contact = () => {
                             animate={{ rotate: [0, 10, -10, 0] }}
                             transition={{ duration: 0.5 }}
                           >
-                            ❌
+                            <FaCircleXmark />
                           </motion.span>
                           {status.message}
                         </>
