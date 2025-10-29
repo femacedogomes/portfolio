@@ -16,6 +16,7 @@ import {
   SiCss3,
   SiTailwindcss,
   SiGit,
+  SiN8N,
 } from "react-icons/si";
 
 const About = () => {
@@ -54,6 +55,11 @@ const About = () => {
       color: "from-teal-400 to-cyan-500",
     },
     { name: "Git", icon: <SiGit />, color: "from-gray-600 to-gray-700" },
+    {
+      name: "n8n",
+      icon: <SiN8N />,
+      color: "from-rose-500 to-orange-500",
+    },
   ];
 
   return (
