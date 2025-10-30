@@ -44,12 +44,23 @@ const techConfig: Record<string, { icon: ReactNode; color: string }> = {
 
 const projects = [
   {
-    title: "Agility Creative Solution",
+    title: "Agility Creative",
     description: "Um site visando estética, responsividade, SEO e performance.",
     image: "/images/project1.png",
     technologies: ["React", "Next", "Tailwind", "TypeScript", "Sanity"],
     category: "Web Development",
     gradient: "from-blue-500 to-purple-600",
+    href: "https://www.agilitycreative.com/",
+  },
+  {
+    title: "Admissão Auto Service",
+    description:
+      "Um site visando visibilidade, modernidade, conversão e posicionamento",
+    image: "/images/project7.png",
+    technologies: ["Next", "Tailwind", "TypeScript"],
+    category: "Web Development",
+    gradient: "from-gray-400 to-gray-700",
+    href: "https://www.admissaoautoservice.com.br/",
   },
   {
     title: "Academia Cearense de Economia",
@@ -59,6 +70,7 @@ const projects = [
     technologies: ["Wordpress", "PHP", "Elementor"],
     category: "WordPress",
     gradient: "from-indigo-500 to-blue-600",
+    href: "https://academiacearensedeeconomia.com.br/",
   },
   {
     title: "Monteiro & Rolim advocacia",
@@ -67,6 +79,16 @@ const projects = [
     technologies: ["Wordpress", "PHP", "Elementor"],
     category: "WordPress",
     gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "Shopping Então Pronto",
+    description:
+      "Um site para associados da Então Pronto cadastrarem suas lojas e seus serviços e produtos.",
+    image: "/images/project6.png",
+    technologies: ["Next.js", "Tailwind", "Sanity", "TypeScript"],
+    category: "E-commerce",
+    gradient: "from-pink-500 to-rose-600",
+    href: "https://www.shoppingentaopronto.com.br/",
   },
   {
     title: "EasyToLive",
@@ -92,15 +114,6 @@ const projects = [
     technologies: ["React Native", "Node.js", "MongoDB", "TypeScript"],
     category: "Mobile App",
     gradient: "from-orange-500 to-red-500",
-  },
-  {
-    title: "Shopping Então Pronto",
-    description:
-      "Um site para associados da Então Pronto cadastrarem suas lojas e seus serviços e produtos.",
-    image: "/images/project6.png",
-    technologies: ["Next.js", "Tailwind", "Sanity", "TypeScript"],
-    category: "E-commerce",
-    gradient: "from-pink-500 to-rose-600",
   },
 ];
 
@@ -140,140 +153,148 @@ const Projects = () => {
           </motion.h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 100,
-                }}
-                whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                  transition: { duration: 0.3 },
-                }}
-                viewport={{ once: true }}
-                className="group relative bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-white/20 hover:border-white/40 transition-all duration-500"
-              >
-                {/* Gradient overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                ></div>
-
-                {/* Category badge */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+            {projects.map((project, index) => {
+              const Wrapper = project.href ? motion.a : motion.div;
+              return (
+                <Wrapper
+                  key={project.title}
+                  href={project.href || undefined}
+                  target={project.href ? "_blank" : undefined}
+                  rel={project.href ? "noopener noreferrer" : undefined}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    type: "spring",
+                    stiffness: 100,
+                  }}
+                  whileHover={{
+                    y: -10,
+                    scale: 1.02,
+                    transition: { duration: 0.3 },
+                  }}
                   viewport={{ once: true }}
-                  className={`absolute top-4 left-4 z-10 px-3 py-1 bg-gradient-to-r ${project.gradient} text-white text-xs font-semibold rounded-full shadow-lg`}
+                  className={`group relative bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-white/20 hover:border-white/40 transition-all duration-500 ${
+                    project.href ? "cursor-pointer" : "cursor-default"
+                  }`}
                 >
-                  {project.category}
-                </motion.div>
+                  {/* Gradient overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                  ></div>
 
-                {/* Image container */}
-                <div className="relative h-48 overflow-hidden">
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 relative z-10">
-                  <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
-                    viewport={{ once: true }}
-                    className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300"
-                  >
-                    {project.title}
-                  </motion.h3>
-
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
-                    viewport={{ once: true }}
-                    className="text-gray-300 mb-6 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300"
-                  >
-                    {project.description}
-                  </motion.p>
-
-                  {/* Technologies */}
+                  {/* Category badge */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
                     viewport={{ once: true }}
-                    className="flex flex-wrap gap-2"
+                    className={`absolute top-4 left-4 z-10 px-3 py-1 bg-gradient-to-r ${project.gradient} text-white text-xs font-semibold rounded-full shadow-lg`}
                   >
-                    {project.technologies.map((tech, techIndex) => {
-                      const config = techConfig[
-                        tech as keyof typeof techConfig
-                      ] || {
-                        icon: <FaWrench />,
-                        color: "from-gray-500 to-gray-600",
-                      };
-                      return (
-                        <motion.span
-                          key={tech}
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{
-                            duration: 0.3,
-                            delay: index * 0.1 + 0.7 + techIndex * 0.1,
-                            type: "spring",
-                            stiffness: 200,
-                          }}
-                          whileHover={{
-                            scale: 1.1,
-                            y: -2,
-                            transition: { duration: 0.2 },
-                          }}
-                          viewport={{ once: true }}
-                          className={`inline-flex items-center gap-1 px-3 py-1 bg-gradient-to-r ${config.color} text-white text-xs font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300`}
-                        >
-                          <motion.span
-                            animate={{
-                              rotate: [0, 10, -10, 0],
-                              scale: [1, 1.1, 1],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              repeatDelay: 4,
-                              delay: techIndex * 0.5,
-                            }}
-                            className="text-sm"
-                          >
-                            {config.icon}
-                          </motion.span>
-                          {tech}
-                        </motion.span>
-                      );
-                    })}
+                    {project.category}
                   </motion.div>
 
-                  {/* Hover effect overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </div>
-              </motion.div>
-            ))}
+                  {/* Image container */}
+                  <div className="relative h-48 overflow-hidden">
+                    <motion.img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 relative z-10">
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
+                      viewport={{ once: true }}
+                      className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300"
+                    >
+                      {project.title}
+                    </motion.h3>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+                      viewport={{ once: true }}
+                      className="text-gray-300 mb-6 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300"
+                    >
+                      {project.description}
+                    </motion.p>
+
+                    {/* Technologies */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+                      viewport={{ once: true }}
+                      className="flex flex-wrap gap-2"
+                    >
+                      {project.technologies.map((tech, techIndex) => {
+                        const config = techConfig[
+                          tech as keyof typeof techConfig
+                        ] || {
+                          icon: <FaWrench />,
+                          color: "from-gray-500 to-gray-600",
+                        };
+                        return (
+                          <motion.span
+                            key={tech}
+                            initial={{ opacity: 0, scale: 0 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{
+                              duration: 0.3,
+                              delay: index * 0.1 + 0.7 + techIndex * 0.1,
+                              type: "spring",
+                              stiffness: 200,
+                            }}
+                            whileHover={{
+                              scale: 1.1,
+                              y: -2,
+                              transition: { duration: 0.2 },
+                            }}
+                            viewport={{ once: true }}
+                            className={`inline-flex items-center gap-1 px-3 py-1 bg-gradient-to-r ${config.color} text-white text-xs font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300`}
+                          >
+                            <motion.span
+                              animate={{
+                                rotate: [0, 10, -10, 0],
+                                scale: [1, 1.1, 1],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatDelay: 4,
+                                delay: techIndex * 0.5,
+                              }}
+                              className="text-sm"
+                            >
+                              {config.icon}
+                            </motion.span>
+                            {tech}
+                          </motion.span>
+                        );
+                      })}
+                    </motion.div>
+
+                    {/* Hover effect overlay */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+                      initial={{ scale: 0 }}
+                      whileHover={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                </Wrapper>
+              );
+            })}
           </div>
 
           {/* Statistics section */}
