@@ -2,14 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import { emailjsConfig } from "@/config/emailjs";
 import {
-  FaComments,
   FaEnvelope,
   FaRocket,
   FaCircleCheck,
   FaCircleXmark,
+  FaGithub,
+  FaLinkedin,
 } from "react-icons/fa6";
 
 const Contact = () => {
@@ -24,32 +23,33 @@ const Contact = () => {
     message: "",
   });
 
+  const [categories, setCategories] = useState<string[]>([]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus({ type: "loading", message: "Enviando..." });
+    setStatus({ type: "loading", message: "Abrindo seu e-mail..." });
+
+    const to = "femacedogomes@gmail.com";
+    const subject = `Novo contato do portfólio - ${formData.name}`;
+    const selectedCategories = categories.length
+      ? `\n\nCategorias: ${categories.join(", ")}`
+      : "";
+    const body = `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nIdeia/Descrição:\n${formData.message}${selectedCategories}`;
+
+    const mailtoUrl = `mailto:${to}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
 
     try {
-      await emailjs.send(
-        emailjsConfig.serviceId,
-        emailjsConfig.templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-        },
-        emailjsConfig.publicKey
-      );
-
+      window.location.href = mailtoUrl;
       setStatus({
         type: "success",
-        message: "Mensagem enviada com sucesso!",
+        message: "Pronto para enviar no seu e-mail.",
       });
       setFormData({ name: "", email: "", message: "" });
+      setCategories([]);
     } catch {
-      setStatus({
-        type: "error",
-        message: "Erro ao enviar mensagem. Tente novamente.",
-      });
+      setStatus({ type: "error", message: "Não foi possível abrir o e-mail." });
     }
   };
 
@@ -60,6 +60,12 @@ const Contact = () => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const toggleCategory = (value: string) => {
+    setCategories((prev) =>
+      prev.includes(value) ? prev.filter((c) => c !== value) : [...prev, value]
+    );
   };
 
   return (
@@ -86,125 +92,20 @@ const Contact = () => {
           viewport={{ once: true }}
           className="max-w-6xl mx-auto"
         >
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-center bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent mb-16"
-          >
-            Entre em Contato
-          </motion.h2>
-
           <div className="grid lg:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+            {/* Coluna 1: Texto simples */}
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20"
+              className="text-3xl md:text-7xl pt-10 font-bold pb-10 text-center bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent"
             >
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="text-2xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <FaComments />
-                  Vamos conversar!
-                </span>
-              </motion.h3>
+              Vamos criar algo incrível juntos.
+            </motion.p>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-                className="text-gray-700 mb-8 text-lg leading-relaxed"
-              >
-                Estou sempre aberto a novas oportunidades e parcerias. Entre em
-                contato comigo através do formulário ou das redes sociais.
-              </motion.p>
-
-              <div className="space-y-6">
-                <motion.a
-                  href="mailto:femacedogomes@gmail.com"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100 hover:shadow-lg transition-all duration-300 group"
-                >
-                  <motion.div
-                    className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </motion.div>
-                  <div>
-                    <p className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
-                      E-mail
-                    </p>
-                    <p className="text-gray-600 group-hover:text-blue-500 transition-colors">
-                      femacedogomes@gmail.com
-                    </p>
-                  </div>
-                </motion.a>
-
-                <motion.a
-                  href="https://www.linkedin.com/in/felipemacedogomes"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100 hover:shadow-lg transition-all duration-300 group"
-                >
-                  <motion.div
-                    className="p-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  </motion.div>
-                  <div>
-                    <p className="font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">
-                      LinkedIn
-                    </p>
-                    <p className="text-gray-600 group-hover:text-purple-500 transition-colors">
-                      Conecte-se comigo
-                    </p>
-                  </div>
-                </motion.a>
-              </div>
-            </motion.div>
-
+            {/* Coluna 2: Email, ícones e formulário */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -212,79 +113,85 @@ const Contact = () => {
               viewport={{ once: true }}
               className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20"
             >
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-                className="text-2xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-              >
-                <span className="inline-flex items-center gap-2">
+              <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
+                <a
+                  href="mailto:femacedogomes@gmail.com"
+                  className="inline-flex items-center gap-2 text-indigo-700 font-semibold hover:text-indigo-900 transition-colors"
+                >
                   <FaEnvelope />
-                  Envie uma mensagem
-                </span>
-              </motion.h3>
+                  femacedogomes@gmail.com
+                </a>
+
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://github.com/femacedogomes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-800 hover:text-black transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <FaGithub />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/felipemacedogomes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 hover:text-blue-900 transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin />
+                  </a>
+                </div>
+              </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                    placeholder="Seu nome completo"
-                  />
-                </motion.div>
+                {/* Nome e E-mail na mesma linha */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
+                      Nome
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                      placeholder="Seu nome completo"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-semibold text-gray-700 mb-2"
+                    >
+                      E-mail
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
+                      placeholder="seu@email.com"
+                    />
+                  </div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  viewport={{ once: true }}
-                >
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold text-gray-700 mb-2"
-                  >
-                    E-mail
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                    placeholder="seu@email.com"
-                  />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                  viewport={{ once: true }}
-                >
+                {/* Descrição */}
+                <div>
                   <label
                     htmlFor="message"
                     className="block text-sm font-semibold text-gray-700 mb-2"
                   >
-                    Mensagem
+                    Descrição da sua ideia
                   </label>
                   <textarea
                     id="message"
@@ -296,14 +203,48 @@ const Contact = () => {
                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white/50 backdrop-blur-sm resize-none"
                     placeholder="Conte-me sobre seu projeto ou ideia..."
                   />
-                </motion.div>
+                </div>
+
+                {/* Categorias */}
+                <div>
+                  <p className="block text-sm font-semibold text-gray-700 mb-3">
+                    Categorias
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      "Site",
+                      "E-commerce",
+                      "App Mobile",
+                      "App Web",
+                      "Identidade de Marca",
+                      "Animação 3D",
+                      "Estratégia de Marca & Consultoria",
+                      "Outro",
+                    ].map((label) => (
+                      <label
+                        key={label}
+                        className="flex items-center gap-3 p-3 rounded-xl border-2 border-gray-200 bg-white/50 hover:border-purple-300 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 text-purple-600 rounded focus:ring-purple-500"
+                          checked={categories.includes(label)}
+                          onChange={() => toggleCategory(label)}
+                        />
+                        <span className="text-gray-800 text-sm font-medium">
+                          {label}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
 
                 <motion.button
                   type="submit"
                   disabled={status.type === "loading"}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -327,11 +268,11 @@ const Contact = () => {
                           }}
                           className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                         />
-                        Enviando...
+                        Preparando e-mail...
                       </>
                     ) : (
                       <>
-                        Enviar Mensagem
+                        Enviar
                         <motion.span
                           animate={{ x: [0, 5, 0] }}
                           transition={{ duration: 1.5, repeat: Infinity }}
