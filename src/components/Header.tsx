@@ -80,7 +80,7 @@ const Header = () => {
         className="md:hidden overflow-hidden bg-white/95 backdrop-blur-sm shadow-sm"
       >
         <ul className="container mx-auto px-6 py-3 space-y-2">
-          {navItems.map((item, index) => (
+          {navItems.map((item) => (
             <li key={item.name}>
               <Link
                 href={item.href}
